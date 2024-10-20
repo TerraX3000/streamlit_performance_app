@@ -43,12 +43,12 @@ def run():
                     response = requests.get(
                         f"https://dummyjson.com/products?delay={api_delay*1000}"
                     )
+                    end_time = time.time()
                     if response.status_code == 200:
                         data = response.json()
                         if "products" in data:
                             st.write("API Call Successful!")
                             products = data["products"]
-                            end_time = time.time()
                             elapsed_time = end_time - start_time
                             st.write(f"Elapsed time: {elapsed_time:.2f} seconds")
                             st.json(products, expanded=False)
